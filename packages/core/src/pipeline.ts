@@ -43,7 +43,7 @@ export interface AnalyzeCorpusOptions {
   flagThreshold?: number;
   /** Nakalchi-introduced parameter, not from ARCHITECTURE.md - see config.ts's DEFAULT_CORPUS_CAP comment. */
   corpusCap?: number;
-  /** Fingerprints subtracted outright, per ARCHITECTURE.md §5 Phase 3 item 1. */
+  /** Fingerprints subtracted outright, per ARCHITECTURE.md's base-code filter spec. */
   starterCode?: { language: Language; source: string }[];
 }
 
@@ -55,10 +55,10 @@ interface Preprocessed {
 
 // Same tokenize -> intern -> hash -> winnow composition as fingerprint()
 // above, duplicated deliberately rather than extending fingerprint()'s
-// return shape - keeps Phase 1/2 behavior and API surface completely
-// untouched (see phase plan: "zero Phase 1/2 changes" option). Phase 3
-// needs the Token[] too (for region byte-offset mapping), which
-// fingerprint() doesn't expose.
+// return shape - keeps tokenizer/fingerprinting behavior and API surface
+// completely untouched ("zero changes" option). Matching needs the
+// Token[] too (for region byte-offset mapping), which fingerprint()
+// doesn't expose.
 function preprocess(input: { language: Language; source: string }, k: number, w: number): { tokens: Token[]; fingerprints: Fingerprint[] } {
   const tokens = input.language === 'cpp' ? tokenizeCpp(input.source) : tokenizePython(input.source);
   const tokenIds = tokens.map((t) => internNorm(t.norm));
@@ -67,7 +67,7 @@ function preprocess(input: { language: Language; source: string }, k: number, w:
 }
 
 /**
- * ARCHITECTURE.md §5 Phase 3 / §4's pipeline.ts: analyzeCorpus(submissions, opts) -> AnalysisResult.
+ * ARCHITECTURE.md §4's pipeline.ts: analyzeCorpus(submissions, opts) -> AnalysisResult.
  * Zero I/O - submissions/starterCode are raw strings the caller already
  * has in memory; core never reads files itself.
  */

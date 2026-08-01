@@ -151,8 +151,8 @@ argument over random permutations of window contents.
 
 ## 6. The worked example — `adorunrunrunadorunrun`, k=5, w=4
 
-**You must hand-trace this yourself before Phase 2 — it becomes the exact
-unit test in `winnow.test.ts`.** What follows is laid out so you can check
+**You must hand-trace this yourself before implementing fingerprinting —
+it becomes the exact unit test in `winnow.test.ts`.** What follows is laid out so you can check
 it line by line; I built the k-gram/position columns myself directly from
 the input string (mechanical, not something to take on faith), and the hash
 and fingerprint columns are the paper's own Figure 2 values, which I

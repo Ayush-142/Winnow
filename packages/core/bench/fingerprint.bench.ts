@@ -1,8 +1,8 @@
 /**
- * Phase 2 perf gate: fingerprint 1,000 synthetic ~200-line submissions,
+ * Perf gate: fingerprint 1,000 synthetic ~200-line submissions,
  * single-threaded, must complete < 10s. Run manually (per ARCHITECTURE.md
- * §6 - benchmarks run manually, not on every CI push), real numbers pasted
- * into the phase report, not asserted inside the vitest suite.
+ * §5 - benchmarks run manually, not on every CI push), real numbers pasted
+ * into the benchmarks doc, not asserted inside the vitest suite.
  */
 import { fingerprint } from '../src/pipeline.js';
 

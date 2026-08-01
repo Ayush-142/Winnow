@@ -29,7 +29,7 @@ export default defineConfig({
       API_KEYS: 'test-api-key',
       WEBHOOK_SECRET: 'test-webhook-secret-value',
       QUEUE_PREFIX: 'NakalchiTest:',
-      // Phase 6: never actually dialed in tests - fetchContestSubmissions is
+      // Pull mode: never actually dialed in tests - fetchContestSubmissions is
       // mocked wherever pull mode is exercised. Placeholder to satisfy
       // config/env.ts's fail-fast validation, same posture as MONGO_URI above.
       CODEARENA_BASE_URL: 'http://codearena-test-placeholder.invalid',

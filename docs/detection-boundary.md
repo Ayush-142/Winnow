@@ -4,7 +4,7 @@ Real numbers from `test/pipeline.test.ts` (`corpus/two-sum-cpp`, default
 params: k=17, w=4, basecodeMaxFreq=0.5, minSharedFingerprints=5,
 flagThreshold=0.35). This documents where token-level winnowing currently
 stops working, using `corpus/two-sum-cpp/evasions/` — two adversarial
-variants of `sol02` that deliberately exceed ARCHITECTURE.md §5's variant
+variants of `sol02` that deliberately exceed ARCHITECTURE.md's variant
 disguise levels. See `evasions/README.md` for full provenance.
 
 ## Measured numbers
@@ -14,7 +14,7 @@ disguise levels. See `evasions/README.md` for full provenance.
 | sol02 ~ evasion_1 (function split) | 0.2642 | 0.3333 | 14 | **false** |
 | sol02 ~ evasion_2 (rewritten lift) | 0.1136 | 0.2381 | 10 | **false** |
 
-For contrast, every real §5 variant flags at the same params — from
+For contrast, every real corpus variant flags at the same params — from
 `sol02~var_c`/`var_e` at 0.48 up to `sol02~var_a`/`var_b` at 1.00 (full
 120 vs. 153-candidate score matrix in `test/pipeline.test.ts`'s output).
 The evasions sit clearly below `flagThreshold=0.35`, not marginally.
@@ -59,15 +59,15 @@ kind of number someone watching will ask about.
 
 ## Two product implications
 
-**1. §8's AST-normalization stretch phase is the intended countermeasure
-for control-flow restructuring, not a bigger `w`.** Widening the winnowing
+**1. AST-normalization is the intended countermeasure for control-flow
+restructuring, not a bigger `w`.** Widening the winnowing
 window or lowering `flagThreshold` to catch evasion_1/evasion_2 would also
 inflate false-positive risk against genuine solutions sharing ordinary
 idioms (e.g. `sol01~sol10` already sits at 0.30, closer to threshold than
 any evasion here is to flagging) — token-level k-grams fundamentally
 can't see through a real control-flow rewrite the same content is poured
-into. Structural (AST-level) fingerprinting, already scoped as Phase 8,
-is what's designed to catch this class of disguise instead.
+into. Structural (AST-level) fingerprinting, already scoped as a stretch
+goal, is what's designed to catch this class of disguise instead.
 
 **2. `longestRegionTokens` (and region data generally) deserves prominence
 in the report UI, not just the aggregate similarity ratio.** evasion_2

@@ -1,14 +1,14 @@
 # corpus/two-sum-cpp — provenance
 
 ## What this is
-Fixture corpus for Nakalchi's Phase 3 accuracy test (ARCHITECTURE.md §5
-Phase 3, corpus-level pipeline test). Problem spec: PROBLEM.md.
+Fixture corpus for Nakalchi's accuracy test (ARCHITECTURE.md's
+corpus-level pipeline test). Problem spec: PROBLEM.md.
 
 ## Provenance — read before citing accuracy numbers
 These are NOT real student submissions. All 16 files were AI-generated
-(Claude, July 2026) as deliberately independent implementations, at the
-project author's request, outside of and independent from the sessions
-that implemented the matching engine. Diversity between sol01-sol10 is
+as deliberately independent implementations, at the project author's
+request, outside of and independent from the sessions that implemented
+the matching engine. Diversity between sol01-sol10 is
 structural (different algorithms and idioms), not just cosmetic, because
 Nakalchi's normalization erases naming/formatting differences by design.
 
@@ -61,17 +61,17 @@ returns a nonzero status on the no-pair path, which some judges classify as
 a runtime error rather than a wrong answer) on that one hidden test, despite
 being entirely correct against this corpus's own spec.
 
-Phase 6's E2E run (`docs/e2e-codearena.md`) needed real `AC` verdicts from
+The E2E run (`docs/e2e-codearena.md`) needed real `AC` verdicts from
 CodeArena's actual judge, so it submitted **adapted copies** — not these
 files — with a `"YES "` prefix added to each existing output statement, plus
 an explicit no-pair branch printing `"NO"` (three files — `sol06`, `sol07`,
 `sol08` — had a latent bug here of their own: they unconditionally print
 whatever ended up in their answer variables, which was never caught because
 this corpus's guarantee means the no-pair path is simply never exercised by
-Phase 0-3's own tests). None of that touched these committed files.
+the corpus test suite). None of that touched these committed files.
 
 Empirically checked (not just assumed) whether applying that same patch
-*to these committed files* would change Phase 3's golden `pipeline.test.ts`
+*to these committed files* would change the golden `pipeline.test.ts`
 results: every `sol02`~variant pair still flags, zero false positives among
 `sol01`..`sol10`, both `evasion_*` pairs still don't flag — the test suite's
 actual assertions all still hold. But the patch does measurably shift

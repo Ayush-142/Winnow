@@ -1,5 +1,5 @@
 /**
- * §5 Phase 4 item 9: idempotent re-enqueue. Calls the worker's job
+ * Per ARCHITECTURE.md: idempotent re-enqueue. Calls the worker's job
  * handler directly, twice, against the same analysisId (simulating
  * BullMQ re-delivery) - this tests OUR OWN idempotency guard logic in
  * queue/analysisWorker.ts, not BullMQ's own (separately well-tested)
@@ -20,7 +20,7 @@ function fakeJob(analysisId: string): Job<AnalyzeJobData> {
 }
 
 // Identical content on both sides, well over t = w+k-1 = 20 tokens at
-// production defaults - Phase 2's own guarantee property means this is
+// production defaults - winnowing's own guarantee property means this is
 // GUARANTEED to produce at least one shared fingerprint, so the test
 // reliably has real pairs to check for duplication, not a marginal case.
 const sharedBody = `
@@ -53,7 +53,7 @@ describe('worker idempotency: re-delivered job does not duplicate pairs', () => 
     // treat as "template" and exclude entirely - that's base-code
     // filtering working as intended (already covered by core's own
     // basecode.test.ts), not what THIS test checks. Same pitfall hit and
-    // fixed the same way in Phase 3's pipeline.test.ts smoke test.
+    // fixed the same way in pipeline.test.ts's smoke test.
     const analysis = await Analysis.create({
       source: 'api',
       params: { k: DEFAULT_K, w: DEFAULT_W, basecodeMaxFreq: 1.1, flagThreshold: DEFAULT_FLAG_THRESHOLD },

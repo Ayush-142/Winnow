@@ -2,7 +2,7 @@ import { Router, type Request, type Response, type NextFunction } from 'express'
 import { Analysis } from '../models/Analysis.js';
 
 /**
- * Phase 7 §5 item 3: "metrics-lite" admin stats - analyses/day and p50/p95
+ * Per ARCHITECTURE.md: "metrics-lite" admin stats - analyses/day and p50/p95
  * analysis wall time, computed entirely from fields the `analyses`
  * collection already stores (createdAt, status, stats.wallMs). No new
  * instrumentation dependency (no Prometheus client, no metrics library) -

@@ -3,7 +3,7 @@
 A source-code plagiarism detection engine for competitive programming
 judges, based on the Stanford winnowing algorithm (the algorithm behind
 MOSS), built as a standalone service and integrated with
-[CodeArena](../Code%20Arena). Full design rationale, phase history, and
+[CodeArena](../Code%20Arena). Full design rationale and
 acceptance criteria: [ARCHITECTURE.md](Architecture.md).
 
 ## The problem
@@ -138,7 +138,7 @@ token-level winnowing stops working and why.
   0.26; a partial copy with even one edited line inside the matched region
   fragments it enough to drop to 0.11 — both below the 0.35 threshold,
   despite region-extraction still locating the actual copied block. AST-level
-  structural fingerprinting (ARCHITECTURE.md §8, stretch) is the intended
+  structural fingerprinting (ARCHITECTURE.md, stretch goal) is the intended
   countermeasure — not built in v1; widening the winnowing window or
   lowering the threshold to catch these would also raise false-positive risk
   against genuine solutions sharing ordinary idioms (`sol01~sol10` in the
@@ -151,7 +151,7 @@ token-level winnowing stops working and why.
   (every one logs on at least one side), verified against the actual
   handler code in both repos, not summarized from memory:
   1. **Enqueue window.** Contest finalization never depends on Nakalchi
-     being reachable (verified for real during Phase 6 with Nakalchi's
+     being reachable (verified for real with Nakalchi's
      containers stopped — CodeArena's finalization completed normally, the
      enqueue retried 3× with backoff and gave up cleanly). But finalization
      is a one-time atomic event: if the *enqueue itself* fails (e.g. Redis
@@ -181,13 +181,13 @@ token-level winnowing stops working and why.
      (`nakalchi webhook: no contest pending this analysisId (yet)`) on
      CodeArena's side each time, never surfaced as a hard error.
 
-  Full narrative and real log output: this file's git history (Phase 6
-  section) and [docs/e2e-codearena.md](docs/e2e-codearena.md)'s "Failure
+  Full narrative and real log output: this file's git history and
+  [docs/e2e-codearena.md](docs/e2e-codearena.md)'s "Failure
   isolation" section.
 - **Very short solutions look artificially similar.** No dedicated minimum
   token-count floor is enforced yet; extremely short problems (e.g. A+B)
   will tend to score high against each other regardless of authorship. Known
-  property, not a bug (ARCHITECTURE.md §7).
+  property, not a bug (ARCHITECTURE.md §6).
 
 ## API reference (`/api/v1`, auth via `X-Api-Key`)
 
@@ -211,7 +211,7 @@ pagination (`?cursor=&limit=`), not offset.
 
 ## Local setup (~7 min)
 
-Actually run end-to-end from a clean clone during Phase 7 (not assumed —
+Actually run end-to-end from a clean clone (not assumed —
 real timings below, from this machine, network-dependent so treat as an
 order of magnitude, not a guarantee):
 
@@ -262,5 +262,4 @@ I/O), `packages/service` (Express API + BullMQ worker), `packages/web`
 ## Production deployment
 
 `docker-compose.prod.yml` + `docs/deploy-runbook.md` (exact VM commands) +
-`docs/demo-script.md` (recording shot list). See ARCHITECTURE.md §5 Phase 7
-for the full plan.
+`docs/demo-script.md` (recording shot list).

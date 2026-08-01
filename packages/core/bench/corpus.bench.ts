@@ -1,12 +1,11 @@
 /**
- * ARCHITECTURE.md §5 Phase 3 item 7: synthetic corpus generator
+ * ARCHITECTURE.md's synthetic corpus generator
  * (parameterized: n submissions, plagiarism rate, template share); record
  * wall time and peak RSS for n in {100, 500, 1000}. This is explicitly a
- * PERFORMANCE-measurement generator, not a substitute for the blocked
- * accuracy test (2)/§5 item 6, which needs real independently-authored
- * solutions - see the phase plan.
+ * PERFORMANCE-measurement generator, not a substitute for the accuracy
+ * test, which needs real independently-authored solutions.
  *
- * Also checks the phase's own acceptance gate: 1,000-submission analysis
+ * Also checks the acceptance gate: 1,000-submission analysis
  * < 60s end-to-end, single-threaded.
  *
  * RSS caveat: process.memoryUsage().rss is sampled only after each run

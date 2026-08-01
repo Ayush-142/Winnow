@@ -21,7 +21,7 @@ import { ANALYZE_QUEUE_NAME, createRedisConnection, type AnalyzeJobData } from '
 const PROGRESS_UPDATE_EVERY_N_SUBMISSIONS = 25;
 
 /**
- * Phase 6 pull mode: fetches submissions from CodeArena and stores them as
+ * Pull mode: fetches submissions from CodeArena and stores them as
  * SubmissionSnapshot docs. Called only when `snapshotsComplete` is false -
  * which covers both "never fetched yet" and "a prior attempt's insertMany
  * was interrupted, leaving an untrustworthy partial prefix" (plan review
@@ -257,7 +257,7 @@ export function startAnalysisWorker(): Worker<AnalyzeJobData> {
     void (async () => {
       if (!job) return;
       const attemptsMax = job.opts.attempts ?? 1;
-      // UnrecoverableError (Phase 6 pull-mode deterministic failures - see
+      // UnrecoverableError (pull-mode deterministic failures - see
       // fetchAndStorePullModeSnapshots) short-circuits BullMQ's own retry
       // decision regardless of attempts remaining (shouldRetryJob checks
       // `!(err instanceof UnrecoverableError)` before ever consulting
@@ -287,7 +287,7 @@ export function startAnalysisWorker(): Worker<AnalyzeJobData> {
 }
 
 /**
- * Graceful shutdown (§5 Phase 4 item 8): stop accepting new jobs, let the
+ * Graceful shutdown (ARCHITECTURE.md): stop accepting new jobs, let the
  * in-flight one finish (or let BullMQ requeue it), close connections.
  */
 async function shutdown(worker: Worker<AnalyzeJobData>): Promise<void> {

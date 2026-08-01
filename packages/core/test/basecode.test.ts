@@ -1,5 +1,5 @@
 /**
- * ARCHITECTURE.md §5 Phase 3 item 1's own test: "inject a shared fast-IO
+ * ARCHITECTURE.md's own test: "inject a shared fast-IO
  * template into all fixture solutions; assert zero flagged pairs among
  * genuine solutions, while planted plagiarism pairs still flag."
  *
@@ -36,7 +36,7 @@ const genuineC = wrap('    int sum = 0;\n    for (int i = 0; i < 3; i++) { sum +
 
 // A planted plagiarism pair: genuineA's body copied with renamed
 // identifiers (a->p, b->q). Normalization collapses identifier names
-// regardless (Phase 1's rename-invariance), so this produces the same
+// regardless (rename-invariance), so this produces the same
 // normalized token stream as genuineA's body.
 const plagiarized = wrap('    int p = 5;\n    int q = 10;\n    cout << p + q;');
 

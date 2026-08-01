@@ -4,13 +4,13 @@ import { iterateBuckets } from './index.js';
 export interface CandidatePair {
   a: string;
   b: string;
-  /** Distinct shared hash count - IS sharedFingerprints directly, per ARCHITECTURE.md §5 Phase 3 item 3. */
+  /** Distinct shared hash count - IS sharedFingerprints directly, per ARCHITECTURE.md's scoring spec. */
   sharedFingerprints: number;
 }
 
 /**
- * Index-driven candidate generation, per ARCHITECTURE.md §5 Phase 3 item
- * 3 - never all-pairs. The index is assumed already filtered (base-code +
+ * Index-driven candidate generation, per ARCHITECTURE.md's candidate
+ * generation spec - never all-pairs. The index is assumed already filtered (base-code +
  * corpusCap, see basecode.ts), so the only bound left here is the trivial
  * lower one: a bucket with fewer than 2 distinct submissions has no pairs
  * to contribute at all - a different concern from frequency filtering,

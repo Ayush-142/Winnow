@@ -87,7 +87,7 @@ export interface PairDetail {
   b: PairDetailSide;
 }
 
-/** GET /admin/stats shape (Phase 7 §5 item 3). */
+/** GET /admin/stats shape (ARCHITECTURE.md). */
 export interface AdminStats {
   analysesPerDay: { date: string; count: number }[];
   analysisWallMs: { count: number; p50: number | null; p95: number | null };

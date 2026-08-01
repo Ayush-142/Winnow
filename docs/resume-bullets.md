@@ -1,6 +1,6 @@
 # Resume bullets
 
-ARCHITECTURE.md §5 Phase 7 item 6. Numbers below are real, copied from
+Numbers below are real, copied from
 `docs/benchmarks.md`'s "In-situ (Azure VM)" section
 (`bench/corpus.bench.ts`, n=1,000, real deploy VM, both stacks resident) —
 not estimated or retyped from memory.

@@ -41,7 +41,7 @@ const paramsOverrideSchema = z
 
 // SSRF trust assumption, documented not hidden: deliberately NOT blocking
 // localhost/private-network targets - POST /analyses is authenticated
-// (X-Api-Key), and Phase 6's CodeArena integration needs to be able to
+// (X-Api-Key), and CodeArena's pull-mode integration needs to be able to
 // point callbackUrl at a local CodeArena instance. The webhook target is
 // attacker-controlled only to the extent an already-trusted API key
 // holder controls it.
@@ -68,7 +68,7 @@ const directModeBodySchema = z.object({
   submissions: z.array(submissionSchema).min(1).max(MAX_CORPUS_SIZE),
 });
 
-// Phase 6: pull mode validates shape only and enqueues immediately - it does
+// Pull mode validates shape only and enqueues immediately - it does
 // NOT fetch from CodeArena or create SubmissionSnapshot docs here. Per
 // ARCHITECTURE.md §3.2, "fetch submissions" is worker-side work; doing it in
 // this handler would turn a large contest's POST /analyses into a
@@ -167,8 +167,8 @@ export function createAnalysesRouter(queue: Queue<AnalyzeJobData>): Router {
     status: z.enum(['queued', 'running', 'completed', 'failed']).optional(),
   });
 
-  // Phase 5 sanctioned gap-fill: §4.2 never lists an endpoint to list
-  // analyses, but §5's dashboard needs one, and models/Analysis.ts's
+  // Sanctioned gap-fill: §4.2 never lists an endpoint to list
+  // analyses, but the dashboard needs one, and models/Analysis.ts's
   // { status: 1, createdAt: -1 } index exists for exactly this query
   // ("dashboard ... list analyses by status, most recent first"). Added
   // as a scoped exception to the otherwise-frozen service surface; same

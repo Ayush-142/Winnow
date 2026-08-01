@@ -9,7 +9,7 @@ export interface FilterOptions {
 
 /**
  * Builds the exclusion set of hash keys to drop before indexing, per
- * ARCHITECTURE.md §5 Phase 3 item 1 - PLUS corpusCap folded into the same
+ * ARCHITECTURE.md's base-code filter - PLUS corpusCap folded into the same
  * mechanism (see config.ts's DEFAULT_CORPUS_CAP comment for why: skipping
  * over-cap buckets only at candidate-generation time would desync
  * sharedFingerprints from each submission's |FP|, since the denominator

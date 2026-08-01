@@ -30,7 +30,7 @@ function groupPositionsByHash(fingerprints: readonly Fingerprint[]): Map<string,
 }
 
 /**
- * ARCHITECTURE.md §5 Phase 3 item 5: shared fingerprints carry token
+ * ARCHITECTURE.md's region-extraction spec: shared fingerprints carry token
  * positions in both docs; sort by position, merge runs within a gap
  * tolerance of w tokens in BOTH docs; map merged runs back through byte
  * offsets. Cap at 200 regions/pair; compute longestRegionTokens.

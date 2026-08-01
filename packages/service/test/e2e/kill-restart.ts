@@ -1,7 +1,7 @@
 /**
- * §5 Phase 4 item 8's own acceptance test, run manually per §6
+ * ARCHITECTURE.md's own acceptance test, run manually per §5
  * ("Chaos | manual + scripted kill/restart") - NOT part of the CI-gated
- * vitest suite (matches §6's CI order, which has no chaos/e2e step, and
+ * vitest suite (matches §5's CI order, which has no chaos/e2e step, and
  * the same "too slow for every push" treatment benchmarks get).
  *
  * Requires real Mongo + Redis already running (e.g. `docker compose up -d
@@ -33,7 +33,7 @@ const workerEntry = join(repoRoot, 'packages', 'service', 'src', 'queue', 'analy
 const RESOLVED_PARAMS = { k: DEFAULT_K, w: DEFAULT_W, basecodeMaxFreq: DEFAULT_BASECODE_MAX_FREQ, flagThreshold: DEFAULT_FLAG_THRESHOLD };
 
 // Statement SHAPES, not just numeric literals - repeating the exact bug
-// already hit once in Phase 3's bench/corpus.bench.ts: numeric literals
+// already hit once in bench/corpus.bench.ts: numeric literals
 // normalize to NUM regardless of value, so varying only numbers makes
 // every submission collapse to the identical repetitive normalized
 // pattern, which base-code filtering then (correctly) treats as ~100%

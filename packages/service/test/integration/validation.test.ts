@@ -64,7 +64,7 @@ describe('POST /analyses validation', () => {
     expect(res.body.error.code).toBe('validation_error');
   });
 
-  // Phase 6: pull mode validates shape and enqueues immediately - it must
+  // Pull mode validates shape and enqueues immediately - it must
   // NOT fetch from CodeArena or create SubmissionSnapshot docs in the route
   // handler (that's worker-side work, see queue/analysisWorker.ts). This is
   // what makes POST /analyses's 202 semantics hold regardless of contest

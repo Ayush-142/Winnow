@@ -10,11 +10,11 @@ detection breaks down (the two evasions) and why: `docs/detection-boundary.md`.
 Full 21-pair intra-clique score matrix (which pairs among `sol02`+variants
 flag and which don't): `docs/e2e-codearena.md`.
 
-ARCHITECTURE.md §5 Phase 0 step 4 called for two problems; in practice one
-(`two-sum-cpp`) turned out sufficient to exercise every case Phase 3's
-corpus test needed (genuine diversity, all 6 disguise classes, adversarial
-evasion) and a second was never added. Noting this here rather than
-silently pretending the doc and the repo always matched.
+ARCHITECTURE.md called for two problems; in practice one (`two-sum-cpp`)
+turned out sufficient to exercise every case the corpus test needed
+(genuine diversity, all 6 disguise classes, adversarial evasion) and a
+second was never added. Noting this here rather than silently pretending
+the doc and the repo always matched.
 
 ## `corpus/two-sum-cpp` assumes a solution always exists — and diverges
 ## from a judge-compatible copy because of it
@@ -29,17 +29,17 @@ Submitted verbatim, all 16 committed files fail that hidden test (`WA`, or
 spec — three of them (`sol06`, `sol07`, `sol08`) even have a latent bug on
 that untested path (they unconditionally print whatever their answer
 variable holds), never caught because this corpus's own guarantee means the
-no-pair path is never exercised by any of Phase 0–3's tests.
+no-pair path is never exercised by any of the corpus tests.
 
-Phase 6's E2E run needed real `AC` verdicts from CodeArena's actual judge,
+The E2E run needed real `AC` verdicts from CodeArena's actual judge,
 so it submitted **adapted copies** — not these files — with a `"YES "`
 output prefix and an explicit `"NO"` branch added. The committed fixture
 files here were never touched by that patch, and won't be by anything else
-either: their exact token streams are what Phase 3's golden
-`pipeline.test.ts` expectations (and the score matrix linked above) are
-computed against, so editing them — even to make them judge-compatible —
-would silently invalidate already-accepted results. If a judge-compatible
-version of this corpus is ever needed again, adapt copies at the point of
-use (as Phase 6 did), not the fixtures themselves. Full detail on exactly
-what the Phase 6 patch changed and why it was verified but not applied here:
+either: their exact token streams are what the golden `pipeline.test.ts`
+expectations (and the score matrix linked above) are computed against, so
+editing them — even to make them judge-compatible — would silently
+invalidate already-accepted results. If a judge-compatible version of this
+corpus is ever needed again, adapt copies at the point of use (as the E2E
+run did), not the fixtures themselves. Full detail on exactly what that
+patch changed and why it was verified but not applied here:
 [`two-sum-cpp/README.md`](two-sum-cpp/README.md)'s last section.

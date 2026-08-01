@@ -1,12 +1,12 @@
 # Deploy runbook — Nakalchi on CodeArena's Azure VM
 
-Phase 7 (ARCHITECTURE.md §5). Nakalchi deploys onto CodeArena's *existing*
+Nakalchi deploys onto CodeArena's *existing*
 VM, joining its Docker network to reach CodeArena's already-running
 `mongo`/`redis` containers — not independent infrastructure (confirmed
 topology, see plan review). Every command below was actually run on the VM
 (`Ayush@98.70.24.7`, Azure B2s, Ubuntu 24.04) via SSH; output is real,
-captured at the time, not invented ahead of execution (ARCHITECTURE.md §0
-rule 3). Steps not yet run are marked "PENDING" with the command ready to
+captured at the time, not invented ahead of execution (ARCHITECTURE.md's
+no-fabricated-confirmations rule). Steps not yet run are marked "PENDING" with the command ready to
 go.
 
 **Deliberately unversioned files — this runbook is their only source of
@@ -223,7 +223,7 @@ gitignored `.env.production` files on the VM, written directly from the
 
 `worker/.env.production` appended with `NAKALCHI_API_BASE_URL`,
 `NAKALCHI_API_KEY`, `INTERNAL_WEBHOOK_CALLBACK_URL` (the real gap found
-during Phase 7 verification — was absent from
+during verification — was absent from
 `worker/.env.production.example`).
 
 Root `.env.production` appended with
@@ -471,7 +471,7 @@ entirely): `GET /api/v1/analyses/6a5cbf7f9b125fbc8b1fa273` →
 `{"status":"completed","stats":{"submissions":2,"fingerprints":92,"candidatePairs":0,"flaggedPairs":0,"wallMs":383}}`.
 `flaggedPairs: 0` is expected, not a bug: 2 byte-identical submissions →
 every shared hash hits `docFreq/N = 2/2 = 1.0`, correctly excluded as
-"template" by `basecodeMaxFreq` (same documented edge case as the Phase 4
+"template" by `basecodeMaxFreq` (same documented edge case as the
 `idempotency.test.ts` finding).
 
 **Deep-link:** CodeArena's admin contest page (`/admin/contests/:id`) is a
@@ -507,12 +507,12 @@ returns `200`/`isAdmin:true`) — not recorded in this file or git.
 
 Completed as part of step 11 (bench numbers landed in `docs/benchmarks.md`,
 `README.md`, `docs/resume-bullets.md` immediately after the in-situ run —
-see those files' git history for the exact commit). Nothing in this phase
-was left as a placeholder once its real number existed.
+see those files' git history for the exact commit). Nothing here was left
+as a placeholder once its real number existed.
 
 ---
 
-**Phase 7 acceptance gate: complete.** Publicly reachable deployment (both
+**Deployment acceptance gate: complete.** Publicly reachable deployment (both
 domains, real TLS); benchmark table with real VM numbers; demo script
 ready; README complete with a verified local setup; full prod smoke
 (contest → real judge → finalize → integrity analysis → deep-link) against

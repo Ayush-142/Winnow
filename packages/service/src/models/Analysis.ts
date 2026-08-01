@@ -34,7 +34,7 @@ const statsSchema = new Schema(
 );
 
 // Implied addition beyond §4.1's literal schema text - needed because
-// §5 Phase 4 item 6 requires webhook delivery outcomes to be "logged on
+// ARCHITECTURE.md requires webhook delivery outcomes to be "logged on
 // the analysis doc" and there's nowhere else to put that. Delivery is
 // at-least-once, not exactly-once: see queue/analysisWorker.ts's
 // idempotency guard and webhooks/notify.ts.
@@ -61,7 +61,7 @@ const analysisSchema = new Schema({
   progress: { type: Number, required: true, default: 0, min: 0, max: 100 },
   error: { type: String, required: false },
   stats: { type: statsSchema, required: true, default: () => ({}) },
-  // Phase 6 pull-mode idempotency marker (plan review FIX 2): SubmissionSnapshot.insertMany
+  // Pull-mode idempotency marker (plan review FIX 2): SubmissionSnapshot.insertMany
   // is not atomic, so a crash mid-insert can persist a partial prefix of docs. The worker's
   // pull-mode fetch stage (queue/analysisWorker.ts) only trusts existing snapshots as complete
   // when this is true; otherwise it wipes and re-fetches. Direct mode never sets this (its

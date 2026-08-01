@@ -21,7 +21,7 @@ const envSchema = z.object({
   PORT: z.coerce.number().int().positive().default(3000),
   // Makes §3.1's "concurrency=1 per CPU" config-driven instead of hardcoded.
   WORKER_CONCURRENCY: z.coerce.number().int().positive().default(1),
-  // Phase 6: pull-mode fetch target (integrations/codearena.ts), called
+  // Pull-mode fetch target (integrations/codearena.ts), called
   // from the worker at the start of the `running` stage, not the route.
   CODEARENA_BASE_URL: z.string().url('CODEARENA_BASE_URL must be a valid URL'),
   // Same min-length posture as WEBHOOK_SECRET - sent as X-Internal-Token to

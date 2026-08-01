@@ -1,11 +1,11 @@
 /**
- * Hand-constructed micro cases. Same discipline as Phase 2: expected
+ * Hand-constructed micro cases. Same discipline as fingerprinting: expected
  * values are derived here, in writing, BEFORE being used as test
  * expectations - never from running the implementation first.
  *
  * These tests construct Fingerprint[]/Token[] arrays directly (bypassing
- * the tokenizer and rolling hash entirely, same pattern as Phase 2's
- * winnow.test.ts paper-example test bypassing rollingHash.ts) so the
+ * the tokenizer and rolling hash entirely, same pattern as
+ * winnow.test.ts's paper-example test bypassing rollingHash.ts) so the
  * expected numbers are exact and trivially hand-checkable, rather than
  * requiring a fragile hand-computation of real 30-bit rolling hashes for
  * a multi-token source string.
@@ -246,7 +246,7 @@ describe('analyzeCorpus: pipeline-level smoke test (two sources with a known sha
   it('flags two sources sharing an identical >=t-token block', () => {
     // sourceA's entire body (27 tokens) is byte-identical to sourceB's
     // suffix after "int extra = 99;". 27 > t = w+k-1 = 4+17-1 = 20 (the
-    // production defaults), so Phase 2's own (already-tested) guarantee
+    // production defaults), so winnowing's own (already-tested) guarantee
     // property directly implies at least one shared fingerprint must
     // exist - no need to hand-compute exact hash values here, only that
     // the shared block clears the guarantee threshold. basecodeMaxFreq is

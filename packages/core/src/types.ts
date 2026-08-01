@@ -12,7 +12,7 @@ export type TokenType =
 
 export interface Token {
   type: TokenType;
-  /** The value Phase 2 hashes: 'IDENT' | 'NUM' | 'STR' | 'RAW', or the literal text for Keyword/Punct/Preproc. */
+  /** The value fingerprinting hashes: 'IDENT' | 'NUM' | 'STR' | 'RAW', or the literal text for Keyword/Punct/Preproc. */
   norm: string;
   /** 1-based line number. */
   line: number;

@@ -46,7 +46,7 @@ export function buildSeekQuery(cursor: PairCursor): Record<string, unknown> {
   };
 }
 
-// Phase 5 sanctioned gap-fill (see routes/analyses.ts's GET /analyses):
+// Sanctioned gap-fill (see routes/analyses.ts's GET /analyses):
 // same cursor-pagination shape as PairCursor above, but keyed on
 // (createdAt desc, _id asc) to match the dashboard's "most recent first"
 // query pattern and models/Analysis.ts's { status: 1, createdAt: -1 } index.

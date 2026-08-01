@@ -11,7 +11,7 @@ export function fingerprintKey(hash: Hash64): string {
 }
 
 /**
- * Map<hash, Posting[]> per ARCHITECTURE.md §5 Phase 3 item 2, represented
+ * Map<hash, Posting[]> per ARCHITECTURE.md's inverted-index spec, represented
  * as a nested Map<h1, Map<h2, Posting[]>> rather than a
  * Map<string, Posting[]> with a concatenated key.
  *
@@ -21,7 +21,7 @@ export function fingerprintKey(hash: Hash64): string {
  * assumption in the phase plan (that avoiding one Map-object-per-h1-bucket
  * would make string keys faster). The nested Map wins in practice, so
  * that's what's implemented, per this project's "verify claims, don't
- * assert them" discipline (same as Phase 2's BigInt-vs-Number decision).
+ * assert them" discipline (same as the BigInt-vs-Number decision).
  */
 export type InvertedIndex = Map<number, Map<number, Posting[]>>;
 

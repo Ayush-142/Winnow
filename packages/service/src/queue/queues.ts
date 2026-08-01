@@ -6,7 +6,7 @@ export const ANALYZE_QUEUE_NAME = 'analyze';
 
 /**
  * Nakalchi-introduced constant, not one of §4.1's 5 named env vars - same
- * treatment as core's Phase 3 corpusCap: clearly commented, not an
+ * treatment as core's corpusCap: clearly commented, not an
  * unexplained magic number. Base delay for BullMQ's exponential backoff
  * (§3.2 item 7: "BullMQ retry with backoff (max 3)").
  */

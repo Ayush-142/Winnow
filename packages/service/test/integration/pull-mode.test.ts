@@ -1,5 +1,5 @@
 /**
- * Phase 6 pull mode: worker-side fetch stage (queue/analysisWorker.ts's
+ * Pull mode: worker-side fetch stage (queue/analysisWorker.ts's
  * fetchAndStorePullModeSnapshots, called from processAnalyzeJob). Covers
  * the three plan-review fixes directly:
  *  - FIX 1: progress callback doesn't throw ParallelSaveError (exercised
@@ -44,7 +44,7 @@ const codeArenaSubmissions: CodeArenaSubmission[] = [
   { externalId: 'e2', userRef: 'u2', problemRef: 'p1', language: 'cpp', source: sharedBody },
 ];
 
-describe('Phase 6 pull-mode worker fetch stage', () => {
+describe('pull-mode worker fetch stage', () => {
   let harness: TestHarness;
 
   beforeAll(async () => {

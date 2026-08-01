@@ -17,7 +17,7 @@ async function main(): Promise<void> {
     logger.info({ port: env.PORT }, 'API server listening');
   });
 
-  // Graceful shutdown (§5 Phase 4 item 8): stop HTTP intake -> close queue/redis -> close mongo.
+  // Graceful shutdown (ARCHITECTURE.md): stop HTTP intake -> close queue/redis -> close mongo.
   const shutdown = async (): Promise<void> => {
     logger.info('API server received shutdown signal, closing');
     await new Promise<void>((resolve, reject) => {

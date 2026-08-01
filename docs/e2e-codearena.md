@@ -1,13 +1,13 @@
-# Phase 6 E2E: running Nakalchi + CodeArena together locally
+# E2E: running Nakalchi + CodeArena together locally
 
 This documents how to bring up both stacks on one machine to exercise the full
 contest-finalize → integrity-analyze → webhook → Integrity-tab chain, and the
-failure-isolation behavior when Nakalchi is down. See ARCHITECTURE.md §5 Phase 6
+failure-isolation behavior when Nakalchi is down. See ARCHITECTURE.md
 for the design; this is the operational how-to.
 
 ## Topology
 
-Nakalchi's `api`/`worker`/`web` run in Docker (unchanged from Phase 4/5). CodeArena's
+Nakalchi's `api`/`worker`/`web` run in Docker. CodeArena's
 `api`/`worker`/`frontend` run on the host via `npm run dev` — that's already its own
 established local-dev convention (its `docker-compose.yml` is infra-only: mongo/redis/minio,
 no app-service containers). Both stacks share Nakalchi's Mongo container (different
@@ -66,7 +66,7 @@ extra_hosts:
    together if you change one. **`INTERNAL_WEBHOOK_CALLBACK_URL` must use
    `host.docker.internal`, not `localhost`** — this value is sent to Nakalchi and dialed
    back by Nakalchi's `worker` *container*, where `localhost` resolves to the container
-   itself, not the host running CodeArena's api. Confirmed for real during this phase's
+   itself, not the host running CodeArena's api. Confirmed for real during this
    E2E run: using `localhost` here produced three `ECONNREFUSED 127.0.0.1:4000` webhook
    delivery attempts, logged on Nakalchi's worker, before Nakalchi gave up — see
    `Nakalchi/BUGLOG.md`.)
@@ -114,9 +114,9 @@ extra_hosts:
    `http://localhost:4001/admin/contests/:id`'s Integrity section, which deep-links to
    `http://localhost:3001/analyses/:analysisId`.
 
-## Intra-cluster pair matrix (Phase 6 review carry-over)
+## Intra-cluster pair matrix
 
-The Phase 6 acceptance review asked which 4 of the 21 possible pairs within
+The acceptance review asked which 4 of the 21 possible pairs within
 the `sol02` + 6-variant clique (`var_a`..`var_f`, C(7,2)=21) don't flag,
 expecting the story to be "variant-f (partial copy) falls below threshold
 against the other variants." That expectation is wrong. Re-run for real
@@ -163,7 +163,7 @@ variant against the source. All 4 sit at exactly `shared=5`, the
 `minSharedFingerprints` floor, similarity 0.08–0.13, well under the 0.35
 threshold.
 
-**This is not the "var_f is the odd one out" story** the Phase 6 review
+**This is not the "var_f is the odd one out" story** the review
 expected. `var_f` flags against `sol02`, `var_a`, `var_b`, and `var_d` — it
 only fails to flag against `var_c` and `var_e`, on equal footing with
 `var_c` and `var_e` themselves failing against each other's neighbors.
@@ -202,5 +202,5 @@ stays up, the `integrity` job enqueues fine but then exhausts its 3 retries (`at
 one-time atomic event (`Contest.findOneAndUpdate({isFinalized:false}, ...)`); if the
 enqueue itself fails (e.g. Redis down at that exact moment), nothing re-attempts it
 later. Re-running the integrity analysis for an already-finalized contest is out of
-scope for Phase 6 (no admin "re-run" action exists) — see the Nakalchi README's
+scope for now (no admin "re-run" action exists) — see the Nakalchi README's
 failure-isolation section for the same note.

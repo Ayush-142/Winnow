@@ -1,7 +1,7 @@
 # Demo script — ~90 seconds, one take
 
-Every command/URL below was actually run against a live local stack during
-Phase 7 and produced the output quoted (not idealized) — see
+Every command/URL below was actually run against a live local stack and
+produced the output quoted (not idealized) — see
 `docs/e2e-codearena.md` and this session's own commands. On the deployed
 domain, substitute `https://nakalchi-<name>.duckdns.org` for
 `http://localhost:3001` and drop `-H "X-Api-Key: ..."` where the browser is
@@ -25,7 +25,7 @@ Terminal:
 ```
 npm run seed-demo --workspace=@nakalchi/service
 ```
-Real output to let land on screen (captured live during Phase 7):
+Real output to let land on screen (captured live):
 ```
 Loaded 16 submissions from .../corpus/two-sum-cpp
 Analysis created: 6a5bd61a6ce19fbad47c36eb
@@ -75,7 +75,7 @@ the threshold actually doing work, not an obviously-safe gap."
 
 ---
 
-Confirmed live during Phase 7 (not assumed): `packages/core/src/config.ts`'s
+Confirmed live (not assumed): `packages/core/src/config.ts`'s
 `DEFAULT_FLAG_THRESHOLD = 0.35` matches ARCHITECTURE.md §2 exactly, so the
 0.35 cited above is the real, current, unmodified threshold.
 

@@ -1,8 +1,8 @@
 /**
  * ARCHITECTURE.md §4's file tree: "loads corpus, runs an analysis, opens
- * report". The "opens report" part is Phase 5 (no Report UI exists yet) -
- * this Phase 4 version stops at "produces a completed analysis", matching
- * this phase's own acceptance wording exactly. Run against a REAL running
+ * report". The "opens report" part needs the Report UI, which this script
+ * doesn't drive - it stops at "produces a completed analysis", matching
+ * ARCHITECTURE.md's own acceptance wording exactly. Run against a REAL running
  * stack (e.g. `docker compose up`), as an HTTP client of the API - not a
  * direct Mongo/Redis script - so it exercises the exact same path a real
  * caller would.

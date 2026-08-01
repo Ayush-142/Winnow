@@ -39,7 +39,7 @@ export function classifyIdentifier(
 }
 
 // Raw (unsorted) operator/punctuation literals. Centralized here rather
-// than in cpp.ts/python.ts because Phase 2's token-interning registry
+// than in cpp.ts/python.ts because the token-interning registry
 // (below) needs the full closed vocabulary, and cpp.ts/python.ts already
 // import keyword sets from this module - keeping the raw lists here too
 // avoids a circular import. cpp.ts/python.ts import these and apply their
@@ -71,7 +71,7 @@ const KNOWN_PREPROC_DIRECTIVES: readonly string[] = [
   'line', 'error', 'warning', 'pragma',
 ].map((word) => '#' + word);
 
-// Closed, deterministic token-interning registry for Phase 2's rolling
+// Closed, deterministic token-interning registry for the rolling
 // hash. Built once at module load, sorted alphabetically for a canonical
 // order independent of insertion/call order - this is what makes interning
 // safe across separate fingerprint() calls: the same norm string always

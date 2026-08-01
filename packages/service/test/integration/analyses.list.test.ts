@@ -1,5 +1,5 @@
 /**
- * GET /api/v1/analyses - Phase 5 sanctioned gap-fill (see routes/analyses.ts).
+ * GET /api/v1/analyses - sanctioned gap-fill (see routes/analyses.ts).
  * Creates Analysis docs directly rather than through POST + the worker,
  * since this route only reads the analyses collection.
  */

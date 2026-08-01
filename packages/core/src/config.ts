@@ -50,7 +50,7 @@ export const HASH1_MOD = 1_000_000_007;
 export const HASH2_BASE = 524_287; // 2^19 - 1
 export const HASH2_MOD = 998_244_353;
 
-// Phase 3 (matching engine) parameters - defaults per ARCHITECTURE.md §2's
+// Matching engine parameters - defaults per ARCHITECTURE.md §2's
 // params table.
 export const DEFAULT_BASECODE_MAX_FREQ = 0.5; // hash in >50% of submissions -> template
 export const DEFAULT_MIN_SHARED_FINGERPRINTS = 5; // below this, a pair is never a candidate
@@ -58,7 +58,7 @@ export const DEFAULT_FLAG_THRESHOLD = 0.35; // max(simAtoB, simBtoA) >= this -> 
 
 /**
  * Nakalchi-introduced parameter - NOT specified anywhere in
- * ARCHITECTURE.md (only named in prose, in §5 Phase 3 item 3: "posting
+ * ARCHITECTURE.md (only named in prose: "posting
  * list length in [2, corpusCap]", with no default value given there).
  *
  * An absolute (not fractional) bound on how many distinct submissions may

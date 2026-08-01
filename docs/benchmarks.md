@@ -1,7 +1,7 @@
 # Benchmarks
 
 Real numbers from actual runs (dev machine, single-threaded Node),
-committed per ARCHITECTURE.md §5 Phase 3 item 7. Nothing here is estimated
+committed per ARCHITECTURE.md's testing strategy. Nothing here is estimated
 or fabricated — every figure below came from executing the named bench
 script and copying its output.
 
@@ -32,7 +32,7 @@ happens. Wall time scaling from n=100→500 (5x submissions, ~5x time) and
 quadratic, consistent with candidate generation being driven by hash
 bucket sizes rather than full pairwise comparison.
 
-**Acceptance gate (§5 Phase 3): 1,000-submission analysis < 60s
+**Acceptance gate: 1,000-submission analysis < 60s
 single-threaded — met at 3.84s**, roughly 15x margin.
 
 ## In-situ (Azure VM)
@@ -56,7 +56,7 @@ comfortably faster than the dev-machine run above (3.84s), most likely
 Azure B2s burst-credit CPU headroom vs. a busier dev machine at the time,
 not a claim about the VM being intrinsically faster hardware.
 
-**`worker_threads` decision (plan's pre-approved gate): NOT triggered.**
+**`worker_threads` decision (pre-approved gate): NOT triggered.**
 1.42s ≪ 60s — the fan-out design stays unbuilt, per the frozen decision
 rule.
 
@@ -130,9 +130,9 @@ absolute rather than fractional, its effective filter strictness increases
 as corpus size grows (100 submissions is 20% of a 500-corpus but only 10%
 of a 5,000-submission contest's worth) — a size-relative (fractional) cap
 is a reasonable future improvement, but `corpusCap` stays at its current
-value here: algorithm parameters are frozen per ARCHITECTURE.md §0 rule 5,
-and this section documents the tradeoff for the record, not a bug to fix
-in this phase.
+value here: algorithm parameters are frozen per ARCHITECTURE.md's working
+instructions, and this section documents the tradeoff for the record, not
+a bug to fix right now.
 
 ## Inverted index key representation (`bench/index-key.bench.ts`)
 
@@ -146,15 +146,14 @@ string-concatenated key (`Map<string, Posting[]>`) against a nested
 | Nested Map | 199.7 ms |
 
 **Nested Map wins — 1.60x faster than string concatenation.** This is the
-opposite of the working assumption in the Phase 3 plan (that avoiding one
+opposite of the initial working assumption (that avoiding one
 Map-object-per-`h1`-bucket would make string keys faster); measuring
 overturned the assumption, so `match/index.ts` implements the nested Map,
 per this project's "verify claims, don't assert them" discipline.
 
-## Phase 2 hash representation (`bench/hash-representation.bench.ts`, for reference)
+## Hash representation (`bench/hash-representation.bench.ts`, for reference)
 
-Carried over from Phase 2 — still the basis for `config.ts`'s double-hashing
-design:
+Still the basis for `config.ts`'s double-hashing design:
 
 | representation | time (5,000,000 rolling-update iterations) |
 |---|---|

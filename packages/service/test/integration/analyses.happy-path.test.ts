@@ -1,6 +1,6 @@
 /**
- * Full happy path (§5 Phase 4 item 9): POST -> poll -> pairs match
- * Phase 3 expectations on the fixture corpus. Loads the real
+ * Full happy path: POST -> poll -> pairs match
+ * the core pipeline's expectations on the fixture corpus. Loads the real
  * corpus/two-sum-cpp files (test code does I/O) and cross-validates that
  * the service's Mongo round-trip reproduces the same flagged/genuine
  * split already proven in packages/core/test/pipeline.test.ts - not

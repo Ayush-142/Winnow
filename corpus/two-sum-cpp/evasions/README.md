@@ -1,7 +1,7 @@
 # evasions/ — known limitations of token-level winnowing (measured)
 
 These two fixtures are ADVERSARIAL variants of sol02 that deliberately
-exceed the disguise levels in ARCHITECTURE.md §5's variant list. At
+exceed the disguise levels in ARCHITECTURE.md's variant list. At
 default params (k=17, w=4, flagThreshold=0.35) they do NOT flag, and
 the corpus test asserts exactly that, as documentation of the engine's
 current boundary — this is expected behavior, not a bug.
@@ -17,11 +17,11 @@ evasion_2_rewritten_lift  partial copy whose interior was also edited
                           extraction still located the copied block.
 
 Why: with k=17, one changed token destroys every k-gram within 16
-tokens of it. Defeating control-flow restructuring is what §8's
-AST-normalization stretch phase exists for. The evasion_2 case also
+tokens of it. Defeating control-flow restructuring is what the
+AST-normalization stretch goal exists for. The evasion_2 case also
 motivates surfacing longestRegionTokens in the report UI, since
 regions are found even when aggregate ratios stay under threshold.
 
-Provenance: AI-generated (Claude, July 2026), same as the rest of the
-corpus; originally authored as var_d/var_f, reclassified after the
-Phase 3 corpus run measured them below threshold.
+Provenance: AI-generated, same as the rest of the corpus; originally
+authored as var_d/var_f, reclassified after the corpus run measured
+them below threshold.

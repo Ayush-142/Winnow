@@ -1,5 +1,5 @@
 /**
- * ARCHITECTURE.md §5 Phase 3 item 6 - corpus-level pipeline test. Loads
+ * ARCHITECTURE.md's corpus-level pipeline test. Loads
  * real corpus files from disk (test code may do I/O; core library code
  * never does) and runs analyzeCorpus() with DEFAULT params - k, w,
  * basecodeMaxFreq, minSharedFingerprints, flagThreshold, corpusCap are
@@ -97,7 +97,7 @@ const result = analyzeCorpus(submissions); // DEFAULT params - k, w, basecodeMax
   console.log('=========================================================================\n');
 }
 
-describe('analyzeCorpus: corpus-level pipeline test (corpus/two-sum-cpp, §5 Phase 3 item 6)', () => {
+describe('analyzeCorpus: corpus-level pipeline test (corpus/two-sum-cpp)', () => {
   it('sanity: exactly 18 submissions loaded (10 genuine + 6 variants + 2 evasions)', () => {
     expect(submissions).toHaveLength(18);
     expect(submissions.filter((s) => s.id.startsWith('sol'))).toHaveLength(10);

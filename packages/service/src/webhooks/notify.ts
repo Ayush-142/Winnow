@@ -5,7 +5,7 @@ import { logger } from '../lib/logger.js';
 import { Pair } from '../models/Pair.js';
 import type { AnalysisDoc } from '../models/Analysis.js';
 
-const MAX_ATTEMPTS = 3; // §5 Phase 4 item 6: "3 retries with exponential backoff"
+const MAX_ATTEMPTS = 3; // ARCHITECTURE.md: "3 retries with exponential backoff"
 const BACKOFF_BASE_MS = 2_000; // Nakalchi-introduced constant, same treatment as JOB_BACKOFF_BASE_MS
 
 function sign(body: string): string {
@@ -37,7 +37,7 @@ function buildPayload(
 }
 
 /**
- * Signed (§5 Phase 4 item 6: `X-Nakalchi-Signature: hmac-sha256(body, WEBHOOK_SECRET)`),
+ * Signed (ARCHITECTURE.md: `X-Nakalchi-Signature: hmac-sha256(body, WEBHOOK_SECRET)`),
  * 3 attempts with exponential backoff, outcomes written onto
  * `analysis.webhook` after every attempt.
  *
