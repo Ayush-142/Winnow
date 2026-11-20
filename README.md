@@ -1,6 +1,6 @@
 # Winnow
 
-A source-code plagiarism detection engine for competitive programming
+A source code plagiarism detection engine for competitive programming
 judges, based on the Stanford winnowing algorithm (the algorithm behind
 MOSS), built as a standalone service and integrated with
 [CodeArena](../Code%20Arena). Full design rationale and
