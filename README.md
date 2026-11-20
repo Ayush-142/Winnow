@@ -1,4 +1,4 @@
-# Nakalchi
+# Winnow
 
 A source-code plagiarism detection engine for competitive programming
 judges, based on the Stanford winnowing algorithm (the algorithm behind
